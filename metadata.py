@@ -88,6 +88,7 @@ def create_new_metadata_input(metadata_input_name,iam_role_name,api_references_i
             api_references = row.strip() + api_references
         counter = counter + 1
     print(api_references)
+    api_references_reader.close()
     metadata_data = {
         'name':metadata_input_name,
         'account':'splunk_access',
