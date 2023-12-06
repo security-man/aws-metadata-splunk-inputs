@@ -91,8 +91,10 @@ def create_new_metadata_input(metadata_input_name,iam_role_name,api_references_i
     api_references_reader.close()
     metadata_data = {
         'name':metadata_input_name,
+        # splunk account name is hard-coded
         'account':'splunk_access',
         'aws_iam_role':iam_role_name,
+        # regions are hard-coded
         'regions':'eu-west-2,eu-west-1,us-east-1',
         'apis':api_references,
         'sourcetype':'aws:metadata',
