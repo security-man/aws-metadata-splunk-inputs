@@ -139,8 +139,7 @@ def create_metadata_inputs_from_file(metadata_input_names_file,api_references_in
         if len(input_name) > 1:
             for i in range(len(input_name)):
                 create_new_metadata_input(input_name[i],role_name[i],api_references_inputs,username,password)
-                # print("Having a quick sleep for " + str(3600/len(input_name)) + " seconds")
-                # time.sleep(3600/len(input_name))
+                # a 5 second break is made between metadata inputs, to prevent the splunk server becoming overwhelmed with excessive parallel connections to AWS 
                 print("Having a quick sleep for " + str(5) + " seconds")
                 time.sleep(5)
         else:
