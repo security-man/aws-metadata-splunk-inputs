@@ -1,1 +1,3 @@
 *.csv
+aws_input_file_automation_script.py
+auto_update_aws_config.py
