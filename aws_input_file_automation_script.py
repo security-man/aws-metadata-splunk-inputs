@@ -27,12 +27,27 @@ fdelta = list(set(f1_lines).difference(f0_lines))
 fmetadata = open(os.path.expanduser('metadata_inputs'), 'w')
 fmetadata.write("Input Name,Account ID,Role Name,Role ARN\n")
 
+roles = []
+role_arns = []
+account_ids = []
+input_names = []
 for line in fdelta:
-    name = f1_lines[f1_lines.index(line)+2].split("=")
-    account_ids = line.split(":")
-    roles = account_ids[5].split("/")
-    if "RO" in roles[1]:
-        fmetadata.write(name[1]+",")
-        fmetadata.write(account_ids[4]+",")
-        fmetadata.write(roles[1]+",")
-        fmetadata.write(line+"\n")
+    if line.split()[0] == "role_arn":
+        role = line.split("/")[1]
+        if "RO" in role:
+            role_arn = (line.split("=")[1]).lstrip()
+            account_id = line.split(":")[4]
+            roles.append(role)
+            role_arns.append(role_arn)
+            account_ids.append(account_id)
+    if line.split()[0] == "role_session_name":
+        name = line.split("=")[1].lstrip()
+        input_names.append(name)
+
+for i in range(len(roles)):
+    fmetadata.write(input_names[i]+",")
+    fmetadata.write(account_ids[i]+",")
+    fmetadata.write(input_names[i]+",")
+    fmetadata.write(role_arns[i]+"\n")
+
+fmetadata.close()

@@ -37,20 +37,20 @@ The 'aws_input_file_automation_script.py' file contains code to automatically ge
 
 (Command-line arguments):
 
-        $ python3 metadata.py -o create -m api_references -n input_name -r role_name -a role_arn
+        python3 metadata.py -o create -m api_references -n input_name -r role_name -a role_arn
 
 (File-based input):
 
-        $ python3 metadata.py -o create-bulk -i input_file_name -m api_references  -u splunk_username -p splunk_password
+        python3 metadata.py -o create-bulk -i input_file_name -m api_references  -u splunk_username -p splunk_password
 
 ## Using aws_input_file_automation_script.py
 
 1. Modify line 13 to reflect the choice of IAM roles needed for your aws config file (replace 'IAM_ROLE_N' with IAM roles of choice)
 
-        $ AutoUpdateAWSConfig("<IAM_ROLE_1,IAM_ROLE_2,...,IAM_ROLE_N>")
+        AutoUpdateAWSConfig("<IAM_ROLE_1,IAM_ROLE_2,...,IAM_ROLE_N>")
 
 2. Execute aws_input_file_automation_script.py
 
 3. Use the output file 'metadata_inputs' as an input file for metadata.py:
 
-        $ python3 metadata.py -o create-bulk -i metadata_inputs -m api_references  -u splunk_username -p splunk_password
+        python3 metadata.py -o create-bulk -i metadata_inputs -m api_references  -u splunk_username -p splunk_password
