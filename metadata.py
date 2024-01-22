@@ -3,6 +3,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 import csv
 import sys, getopt
+import os
 
 # IAM role creation
 """
@@ -174,8 +175,8 @@ def main(argv):
     role_name = ''
     role_arn = ''
     account_id = ''
-    splunk_user = ''
-    splunk_password = ''
+    splunk_user = os.getenv('splunk_username')
+    splunk_password = os.getenv('splunk_password')
     opts, args = getopt.getopt(argv,"ho:i:m:n:r:a:u:p:",["operation=","inputfile=","apireferences=","inputname=","rolename=","rolearn=","splunkuser=","splunkpassword="])
     for opt, arg in opts:
         if opt == '-h':
